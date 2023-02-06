@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Abonnement;
 use App\Models\Profil;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -36,12 +37,31 @@ class UserController extends Controller
         if ($profils[0]->libelle == 'Agence') {
             $user->nomAgence = $req->nomAgence;
             $user->compteur = $req->compteur;
+            $abonnement = new Abonnement();
+            $abonnement->type = $req->type;
+            $abonnement->nombre = $req->nombre;
+            $abonnement->prix = $req->prix;
+
+            //dd($user_id->id+1);
+
+
+            $user->adresse = $req->adresse;
+            $user->archivage = false;
+            $token = $user->remember_token = Str::random(80);
+
+            $user->save();
+            $user_id = User::all()->last();
+            $abonnement->user_id = $user_id->id;
+            $abonnement->save();
+        }else{
+            $user->adresse = $req->adresse;
+            $user->archivage = false;
+            $token = $user->remember_token = Str::random(80);
+            $user->save();
         }
-        $user->compteur = 0;
-        $user->adresse = $req->adresse;
-        $user->archivage = false;
-        $token = $user->remember_token = Str::random(80);
-        $user->save();
+       // dd('t');
+        //$user->compteur = 0;
+
         return response()->json([
             'status' => true,
             'message' => 'User Created Successfully',
