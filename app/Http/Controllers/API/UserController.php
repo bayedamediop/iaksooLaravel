@@ -117,11 +117,35 @@ class UserController extends Controller
                 //'enseignent'=>$user->enseignent,
             ];
         }
+
         return response()->json([
             'donnees'=> $data
         ]);
     }
 
+    /*Liste des list Admin Agenece en activites*/
+    function listAdminAgenece(){
+        $users = User::where('archivage', false)
+            ->get();
+        foreach ($users as $user){
+            if ($user->profil->libelle == 'Agence'){
+            $data[] = [
+                'id'=> $user->id,
+                'nom'=> $user->nom,
+                'prenom'=> $user->prenom,
+                'email'=> $user->email,
+                'avatar'=> $user->avatar,
+                'telephone'=> $user->telephone,
+                'profil'=> $user->profil->libelle,
+                'abonnement'=> $user->abonnement,
+
+            ];
+        }
+        }
+        return response()->json([
+            'donnees'=> $data
+        ]);
+    }
     public function getUserById($id)
     {
 

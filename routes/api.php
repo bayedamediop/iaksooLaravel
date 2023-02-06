@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\PublicationController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('updateUser/{id}', [UserController::class, 'updateUser']);
     Route::delete('deleteUser/{id}', [UserController::class, 'deleteUser']);
     Route::delete('archiveUser/{id}', [UserController::class, 'archiveUser']);
+    Route::get('listAdminAgenece', [UserController::class, 'listAdminAgenece']);
+
+
+    //Publication
+
+    Route::post("creationPublication",[PublicationController::class,'creationPublication']);
 });

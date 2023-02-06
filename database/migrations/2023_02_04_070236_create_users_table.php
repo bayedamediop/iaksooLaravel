@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('telephone');
-            $table->string('avatar')->nullable();
+            $table->binary('avatar')->nullable();
             $table->string('email')->unique();
             //$table->timestamp('email_verified_at')->nullable();
             $table->string('password');
