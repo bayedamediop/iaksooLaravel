@@ -32,4 +32,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post("creationPublication",[PublicationController::class,'creationPublication']);
     Route::get("listPunlicationAgence/{id}",[PublicationController::class,'listPunlicationAgence']);
+    Route::get("getPublicationById/{id}",[PublicationController::class,'getPublicationById']);
 });
