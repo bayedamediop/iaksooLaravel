@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\PublicationController;
+use App\Http\Controllers\API\ReservationClientController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("listPunlicationAgence/{id}",[PublicationController::class,'listPunlicationAgence']);
     Route::get("getPublicationById/{id}",[PublicationController::class,'getPublicationById']);
     Route::post("updatePublication/{id}",[PublicationController::class,'updatePublication']);
+    Route::post("reservationClient",[ReservationClientController::class,'reservationClient']);
 });
